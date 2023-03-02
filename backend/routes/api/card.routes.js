@@ -1,14 +1,14 @@
 const router = require('express').Router();
 const Card = require('../../views/Card');
 
-const { Todo } = require('../../db/models');
+const { Card } = require('../../db/models');
 
 router
   .route('/card')
   // read
   .get((req, res) => {
     // const { user } = res.locals;
-    Todo.findAll({ raw: true })
+    Card.findAll({ raw: true })
       .then((allTodos) => res.json(allTodos))
       .catch((err) => res.json({ err: err.message }));
   })
@@ -19,13 +19,13 @@ router
       const { name, status } = req.body;
       console.log(name, status);
       if (name) {
-        const newTodo = await Todo.create({
+        const newTodo = await Card.create({
           name,
           status,
         });
         console.log(newTodo);
         if (newTodo) {
-          const newTodo2 = await Todo.findOne({
+          const newTodo2 = await Card.findOne({
             where: { id: newTodo.id },
             raw: true,
           });
@@ -52,7 +52,7 @@ router
       console.log(name, status);
 
       if (name) {
-        const updatedTodo = await Todo.update(
+        const updatedTodo = await Card.update(
           { name, status },
           {
             where: { id },
@@ -61,7 +61,7 @@ router
           }
         );
 
-        const data = await Todo.findOne({ where: { id } });
+        const data = await Card.findOne({ where: { id } });
 
         if (data) {
           res.json(data);
@@ -80,7 +80,7 @@ router
       const { id } = req.params;
       console.log(id);
 
-      const deletedTodo = await Todo.destroy({
+      const deletedTodo = await Card.destroy({
         where: { id },
       });
       if (deletedTodo) {

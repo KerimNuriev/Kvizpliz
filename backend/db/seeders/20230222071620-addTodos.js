@@ -1,9 +1,9 @@
-const { Todo } = require('../models');
+const { Card } = require('../models');
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await Todo.bulkCreate([
+    await Card.bulkCreate([
       {
         name: 'Нервы - слишком влюблён',
         status: false,
@@ -20,6 +20,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await Todo.destroy({ truncate: { cascade: true } });
+    await Card.destroy({ truncate: { cascade: true } });
   },
 };
