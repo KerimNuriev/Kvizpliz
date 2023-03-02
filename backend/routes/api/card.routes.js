@@ -1,10 +1,10 @@
 const router = require('express').Router();
 const Card = require('../../views/Card');
 
-const { Todo } = require('../../db/models');
+const { Card } = require('../../db/models');
 
 router
-  .route('/card')
+  .route('/')
   // read
   .get((req, res) => {
     // const { user } = res.locals;
@@ -42,7 +42,7 @@ router
   });
 
 router
-  .route('/card/:id')
+  .route('/:id')
 
   // update
   .put(async (req, res) => {
@@ -52,7 +52,7 @@ router
       console.log(name, status);
 
       if (name) {
-        const updatedTodo = await Todo.update(
+        const updatedCard = await Todo.update(
           { name, status },
           {
             where: { id },
@@ -61,7 +61,7 @@ router
           }
         );
 
-        const data = await Todo.findOne({ where: { id } });
+        const data = await Card.findOne({ where: { id } });
 
         if (data) {
           res.json(data);
