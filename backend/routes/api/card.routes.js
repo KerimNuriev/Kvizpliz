@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const Card = require('../../views/Card');
 
 const { Card } = require('../../db/models');
 
