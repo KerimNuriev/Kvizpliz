@@ -1,4 +1,4 @@
-import type { Res, User } from "./Types/types";
+import type { Res, State, User } from "./Types/types";
 
 
 export const registr = async (newUser: User): Promise<User> => {
@@ -33,11 +33,7 @@ export const registr = async (newUser: User): Promise<User> => {
     return res.json();
   };
 
-  export const getUsers = async (): Promise<User[]> => {
-    const res = await fetch('http://localhost:4000/api/main');
-    return res.json();
-  };
-  export const checkUser = async (): Promise<Res> => {
+  export const checkUser = async (): Promise<State> => {
     const res = await fetch('/sign-in', {
       credentials: 'include',
     });

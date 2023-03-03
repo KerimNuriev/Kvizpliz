@@ -5,11 +5,12 @@ import Header from './Header';
 import loadThemes from './Theme/ThemeApi';
 import loadCards from './Card/CardApi';
 import Game from './Game';
-import './App.scss';
 import Logout from './Auth/Logout';
 import Authorization from './Auth/Authorization';
 import Registration from './Auth/Registration';
 import * as api from "./Auth/UserApi"
+import './App.scss';
+import type Action from './Auth/Types/Action';
 
 function App(): JSX.Element {
   const dispatch = useDispatch();
@@ -19,14 +20,13 @@ function App(): JSX.Element {
     );
     loadCards().then((cards) => {
       dispatch({ type: 'cards/loadCard', payload: cards });
-      api.getUsers()
-      .then((data) => dispatch({ type: 'INIT_USERS', payload: data }));
     });
+  }, [dispatch]);
 
   useEffect(() => {
     api
       .checkUser()
-      .then((data) => dispatch({ type: 'LOG_USER', payload: data }));
+      .then((data) => dispatch<Action>({ type: 'LOG_USER', payload: data }));
   }, [dispatch]);
   return (
     <div>

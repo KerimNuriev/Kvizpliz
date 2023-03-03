@@ -6,7 +6,7 @@ router.get('/sign-in', async (req, res) => {
   const id = req.session.userId;
   if (id) {
     const user = await User.findOne({ where: { id } });
-    res.json({ message: 'Hi', user: user.name });
+    res.json({ message: 'Hi', user });
   } else {
     res.json({ message: 'no', user: '' });
   }

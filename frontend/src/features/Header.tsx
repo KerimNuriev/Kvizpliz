@@ -14,7 +14,6 @@ export default function Header(): JSX.Element {
         <NavLink to="/">
           <img src="./logo.png" alt="Music" />
         </NavLink>
-        <h1>Привет дурик, name</h1>
         <ul>
           {user && (
             <>

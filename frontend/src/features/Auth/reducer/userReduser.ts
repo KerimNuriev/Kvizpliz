@@ -10,11 +10,6 @@ const initState = {
 // eslint-disable-next-line import/prefer-default-export, @typescript-eslint/default-param-last
 export const userReducer = (state: State = initState, action: Action): State => {
   switch (action.type) {
-    case 'INIT_USERS':
-      return {
-        ...state,
-        users: [...action.payload],
-      };
     case 'REG_USER':
       return {
         ...state,

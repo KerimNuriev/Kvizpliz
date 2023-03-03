@@ -9,6 +9,6 @@ export type User = {
 export type State = {
   user?: undefined | User;
   message: '' | string;
-  users: User[];
+
 };
   
