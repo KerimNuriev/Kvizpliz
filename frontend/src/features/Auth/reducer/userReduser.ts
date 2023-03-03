@@ -2,7 +2,7 @@ import type Action from '../Types/Action';
 import type { State } from '../Types/types';
 
 const initState = {
-  user: {},
+  user: undefined,
   message: '',
   users: [],
 };
@@ -30,7 +30,7 @@ export const userReducer = (state: State = initState, action: Action): State => 
     case 'LOGOUT':
       return {
         ...state,
-        user: '',
+        user: undefined,
       };
 
     default:
