@@ -81,7 +81,8 @@ module.exports = {
       },
       {
         theme_id: 3,
-        source: '/sound/Greatest Soundtracks Ever Ringtones - The Godfather.mp3',
+        source:
+          '/sound/Greatest Soundtracks Ever Ringtones - The Godfather.mp3',
         answer: 'крёстный отец',
         price: 300,
       },

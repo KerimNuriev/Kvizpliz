@@ -11,8 +11,10 @@ export default function Header(): JSX.Element {
   return (
     <>
       <div className="header">
-        <h1>Невъебенное лого</h1>
-        
+        <NavLink to="/">
+          <img src="./logo.png" alt="Music" />
+        </NavLink>
+        <h1>Привет дурик, name</h1>
         <ul>
           {user && (
             <>

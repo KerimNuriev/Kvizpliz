@@ -5,6 +5,7 @@ import Header from './Header';
 import loadThemes from './Theme/ThemeApi';
 import loadCards from './Card/CardApi';
 import Game from './Game';
+import './App.scss';
 import Logout from './Auth/Logout';
 import Authorization from './Auth/Authorization';
 import Registration from './Auth/Registration';
@@ -21,7 +22,6 @@ function App(): JSX.Element {
       api.getUsers()
       .then((data) => dispatch({ type: 'INIT_USERS', payload: data }));
     });
-  }, [dispatch]);
 
   useEffect(() => {
     api
@@ -32,7 +32,6 @@ function App(): JSX.Element {
     <div>
       <Routes>
         <Route path="/" element={<Header />}>
-          {/* <Route index element={<Main />} /> */}
           <Route path="/" element={<Game />} />
           <Route path="/registration" element={<Registration />} />
           <Route path="/login" element={<Authorization />} />
