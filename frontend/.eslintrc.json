@@ -26,6 +26,7 @@
   },
   "plugins": ["react", "@typescript-eslint", "react-hooks"],
   "rules": {
+    "jsx-a11y/label-has-associated-control": 0,
     "@typescript-eslint/no-unsafe-argument": 0,
     "@typescript-eslint/no-unsafe-member-access": 0,
     "@typescript-eslint/no-use-before-define": 0,
