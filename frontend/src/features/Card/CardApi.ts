@@ -1,8 +1,11 @@
-import type Card from './type/Card';
+import type CardType from './type/CardType';
 
-export async function loadCards(): Promise<Card[]> {
-  const res = await fetch('/api/card');
+export default async function loadCards(): Promise<CardType[]> {
+  const res = await fetch('/api/cards');
   return res.json();
 }
 
-export default loadCards;
+// export async function checkCard(id): Promise<string> {
+//   const res = await fetch(`api/cards/check/${id}`)
+//   return res.json()
+// } 

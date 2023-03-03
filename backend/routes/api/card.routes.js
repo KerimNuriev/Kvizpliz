@@ -3,7 +3,7 @@ const router = require('express').Router();
 const { Card } = require('../../db/models');
 
 router
-  .route('/card')
+  .route('/')
   // read
   .get((req, res) => {
     // const { user } = res.locals;
@@ -41,7 +41,7 @@ router
   });
 
 router
-  .route('/card/:id')
+  .route('/:id')
 
   // update
   .put(async (req, res) => {

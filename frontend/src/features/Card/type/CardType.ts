@@ -1,4 +1,4 @@
-type Card = {
+type CardType = {
   id: number;
   theme_id: number;
   answer: string;
@@ -6,4 +6,4 @@ type Card = {
   price: number;
 };
 
-export default Card;
+export default CardType;

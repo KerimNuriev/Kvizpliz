@@ -1,7 +1,7 @@
-import type Theme from './Theme';
+import type ThemeType from './ThemeType';
 
 type ThemeState = {
-  themeList: Theme[];
+  themeList: ThemeType[];
 };
 
 export default ThemeState;

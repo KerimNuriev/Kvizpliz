@@ -34,8 +34,8 @@ router
       } else {
         res.status(400).json({ message: 'Введите логин и пароль' });
       }
-    } catch ({ error }) {
-      console.log(error);
+    } catch ({ message }) {
+      res.status(500).json(message);
     }
   });
 
@@ -60,13 +60,20 @@ router
             email,
             password: hashPassword,
             name,
+            score: 0,
           });
+          user = {
+            id: newUser.id,
+            name: newUser.name,
+            email: newUser.email,
+          };
           req.session.userId = newUser.id;
           res.status(201).json({ data: newUser, message: 'true' });
         }
       } else {
         res.status(400).json({ message: 'Ты кого хочешь обмануть, пес?' });
       }
+      
     } catch ({ error }) {
       console.log(error);
     }
