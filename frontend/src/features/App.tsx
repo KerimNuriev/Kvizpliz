@@ -20,8 +20,8 @@ function App(): JSX.Element {
     <div>
       <Routes>
         <Route path="/" element={<Header />}>
-          {/* <Route index element={<Main />} /> */}
-          <Route path="/" element={<Game />} />
+          <Route index element={<Main />} />
+          <Route path="/game" element={<Game />} />
         </Route>
       </Routes>
     </div>
