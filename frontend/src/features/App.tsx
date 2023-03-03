@@ -5,6 +5,7 @@ import Header from './Header';
 import loadThemes from './Theme/ThemeApi';
 import loadCards from './Card/CardApi';
 import Game from './Game';
+import './App.scss';
 
 function App(): JSX.Element {
   const dispatch = useDispatch();
@@ -20,7 +21,6 @@ function App(): JSX.Element {
     <div>
       <Routes>
         <Route path="/" element={<Header />}>
-          {/* <Route index element={<Main />} /> */}
           <Route path="/" element={<Game />} />
         </Route>
       </Routes>

@@ -6,12 +6,14 @@ export default function Header(): JSX.Element {
   return (
     <>
       <div className="header">
-        <h1>Невъебенное лого</h1>
+        <NavLink to="/">
+          <img src="./logo.png" alt="Music" />
+        </NavLink>
         <h1>Привет дурик, name</h1>
         <ul>
           {user && (
             <li>
-              <NavLink to="/out">Out нахуй</NavLink>
+              <NavLink to="/out">Out</NavLink>
             </li>
           )}
           {!user && (

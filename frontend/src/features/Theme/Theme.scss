@@ -1,0 +1,64 @@
+.board {
+  display: flex;
+  width: 80%;
+  margin: auto;
+  justify-content: space-between;
+  margin-top: 3em;
+}
+.themes {
+  width: 30%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+.themeCard {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.5em;
+  padding: 2em 0.5em;
+  box-sizing: border-box;
+  font-size: 2em;
+  font-weight: bolder;
+}
+.cards {
+  width: 69%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.cardContainer {
+  width: 19%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1em;
+  padding: 2em 1em;
+  box-sizing: border-box;
+}
+.cardContainer button {
+  border: 0;
+  background: transparent;
+  outline: none;
+  font-family: 'Raleway', sans-serif;
+  color: #fff;
+  font-size: 2em;
+}
+.neon-shadow {
+  color: #fff;
+  animation: neon1 1.5s ease-in-out infinite alternate;
+}
+@keyframes neon1 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff1177,
+      0 0 50px #ff1177, 0 0 60px #ff1177, 0 0 70px #ff1177, 0 0 80px #ff1177;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff1177,
+      0 0 25px #ff1177, 0 0 30px #ff1177, 0 0 35px #ff1177, 0 0 40px #ff1177;
+  }
+}
