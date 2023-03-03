@@ -1,7 +1,7 @@
-import type Card from './Card';
+import type CardType from './CardType';
 
 type CardAction =
-  | { type: 'cards/loadCard'; payload: Card[] }
-  | { type: 'cards/checkCard'; payload: Card[] };
+  | { type: 'cards/loadCard'; payload: CardType[] }
+  | { type: 'cards/checkCard'; payload: CardType[] };
 
 export default CardAction;

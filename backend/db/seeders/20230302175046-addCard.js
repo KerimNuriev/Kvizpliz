@@ -6,7 +6,7 @@ module.exports = {
     await Card.bulkCreate([
       {
         theme_id: 1,
-        source: './Kvizpliz/sound/maksim-znaesh-li-ty.mp3',
+        source: '/sound/maksim-znaesh-li-ty.mp3',
         answer: 'Максим',
         price: 100,
       },

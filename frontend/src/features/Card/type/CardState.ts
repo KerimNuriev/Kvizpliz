@@ -1,7 +1,7 @@
-import type Card from './Card';
+import type CardType from './CardType';
 
 type CardState = {
-  cardList: Card[];
+  cardList: CardType[];
 };
 
 export default CardState;
