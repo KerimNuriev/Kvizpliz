@@ -5,6 +5,7 @@ import Header from './Header';
 import loadThemes from './Theme/ThemeApi';
 import loadCards from './Card/CardApi';
 import Game from './Game';
+import './App.scss';
 
 function App(): JSX.Element {
   const dispatch = useDispatch();
