@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store';
-import Card from './type/Card';
+import type { RootState } from '../../store';
+import type CardType from './type/CardType';
 
-function Card(): JSX.Element {
+function Card({ card }: { card: CardType }): JSX.Element {
   const [status, setStatus] = useState(false);
-  const card: Card[] = useSelector((cards: RootState) => state.cardList);
-  const card = { price: 100 };
+  // const cardList = useSelector((state: RootState) => state.cards.cardList);
 
   return (
     <>

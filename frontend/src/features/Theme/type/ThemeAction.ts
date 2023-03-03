@@ -1,6 +1,5 @@
-import type Theme from './Theme';
+import type ThemeType from './ThemeType';
 
-type ThemeAction =
-  | { type: 'themes/loadThemes'; payload: Theme[] }
+type ThemeAction = { type: 'themes/loadThemes'; payload: ThemeType[] };
 
 export default ThemeAction;

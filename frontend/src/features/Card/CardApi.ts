@@ -1,6 +1,6 @@
-import type Card from './type/Card';
+import type CardType from './type/CardType';
 
-export async function loadCards(): Promise<Card[]> {
+async function loadCards(): Promise<CardType[]> {
   const res = await fetch('/api/card');
   return res.json();
 }
