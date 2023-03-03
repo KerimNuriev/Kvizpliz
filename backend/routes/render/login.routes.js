@@ -1,89 +1,76 @@
 const router = require('express').Router();
 const bcrypt = require('bcrypt');
-const FormLog = require('../../views/FormLog');
-const FormReg = require('../../views/FormReg');
 const { User } = require('../../db/models');
 
-router
-  .route('/auth')
-  .get((req, res) => {
-    res.renderComponent(FormLog, {});
-  })
-  .post(async (req, res) => {
-    try {
-      const { email, password } = req.body;
-      if (email && password) {
-        const candidate = await User.findOne({
-          where: { email },
-          raw: true,
+router.get('/sign-in', async (req, res) => {
+  const id = req.session.userId;
+  if (id) {
+    const user = await User.findOne({ where: { id } });
+    res.json({ message: 'Hi', user: user.name });
+  } else {
+    res.json({ message: 'no', user: '' });
+  }
+});
+
+router.post('/sign-in', async (req, res) => {
+  try {
+    const { name, password } = req.body;
+    if (name && password) {
+      let user = await User.findOne({ where: { name } });
+      if (user && (await bcrypt.compare(password, user.password))) {
+        user = {
+          id: user.id,
+          name: user.name,
+          score: user.score,
+        };
+        req.session.userId = user.id;
+        res.status(201).json({ message: '', user });
+      } else {
+        res
+          .status(403)
+          .json({ message: 'Неверный name или пароль', user: {} });
+      }
+    } else {
+      res.status(403).json({ message: 'Заполните все поля', user: {} });
+    }
+  } catch ({ message }) {
+    res.status(500).json(message);
+  }
+});
+
+router.post('/sign-up', async (req, res) => {
+  try {
+    const { name, password } = req.body;
+    if (name && password) {
+      let user = await User.findOne({ where: { name } });
+      if (!user) {
+        const hash = await bcrypt.hash(password, 10);
+        const newUser = await User.create({
+          name,
+          password: hash,
+          score: 0,
         });
-
-        if (candidate) {
-          if (
-            candidate &&
-            (await bcrypt.compare(password, candidate.password))
-          ) {
-            req.session.userId = candidate.id;
-            res.json({ message: 'true' });
-          } else {
-            res.status(400).json({ message: 'Неправильный пароль или логин' });
-          }
-        } else {
-          res.status(400).json({ message: 'Неправильный пароль или логин' });
-        }
+        user = {
+          id: newUser.id,
+          name: newUser.name,
+        };
+        req.session.userId = user.id;
+        res.status(201).json({ message: '', user });
       } else {
-        res.status(400).json({ message: 'Введите логин и пароль' });
+        res
+          .status(403)
+          .json({ message: 'Такой name уже существует', user: {} });
       }
-    } catch ({ message }) {
-      res.status(500).json(message);
+    } else {
+      res.status(403).json({ message: 'Заполните все поля', user: {} });
     }
-  });
+  } catch ({ message }) {
+    res.json(message);
+  }
+});
 
-router
-  .route('/registration')
-  .get((req, res) => {
-    res.renderComponent(FormReg, {});
-  })
-  .post(async (req, res) => {
-    try {
-      const { email, password, name } = req.body;
-      console.log(req.body);
-
-      if (email && password && name) {
-        const candidate = await User.findOne({ where: { email } });
-
-        if (candidate) {
-          res.status(400).json({ message: 'Заняяяяято!', created: false });
-        } else {
-          const hashPassword = await bcrypt.hash(password, 10);
-          const newUser = await User.create({
-            email,
-            password: hashPassword,
-            name,
-            score: 0,
-          });
-          user = {
-            id: newUser.id,
-            name: newUser.name,
-            email: newUser.email,
-          };
-          req.session.userId = newUser.id;
-          res.status(201).json({ data: newUser, message: 'true' });
-        }
-      } else {
-        res.status(400).json({ message: 'Ты кого хочешь обмануть, пес?' });
-      }
-      
-    } catch ({ error }) {
-      console.log(error);
-    }
-  });
-
-router.route('/logout').get((req, res) => {
-  req.session.destroy();
-  res.locals.user = null;
-  res.clearCookie('user_sid');
-  res.redirect('/');
+router.get('/logout', (req, res) => {
+  req.session.destroy(() => res.clearCookie('user_sid').json({ message: 'Session destroy' }));
 });
 
 module.exports = router;

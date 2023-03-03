@@ -12,7 +12,7 @@ module.exports = {
       },
       {
         theme_id: 1,
-        source: '/sound/Тутси - Самый, самыйmp3',
+        source: '/sound/Тутси - Самый, самый.mp3',
         answer: 'Тутси',
         price: 200,
       },

@@ -7,7 +7,7 @@ function Logout(): JSX.Element {
 
   const dispatch = useDispatch();
   const log = async (): Promise<void> => {
-    const out = await fetch('http://localhost:4000/api/auth/logout', {
+    const out = await fetch('/logout', {
       credentials: 'include',
     }).then((data) => dispatch({ type: 'LOGOUT', payload: data }));
     navigate('/');

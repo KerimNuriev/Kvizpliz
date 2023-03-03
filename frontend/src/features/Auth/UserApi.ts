@@ -1,8 +1,8 @@
-import type { User } from "./Types/types";
+import type { Res, User } from "./Types/types";
 
 
 export const registr = async (newUser: User): Promise<User> => {
-    const res = await fetch('http://localhost:4000/api/auth/sign-up', {
+    const res = await fetch('/sign-up', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -10,7 +10,6 @@ export const registr = async (newUser: User): Promise<User> => {
       credentials: 'include',
       body: JSON.stringify({
         name: newUser.name,
-        email: newUser.email,
         password: newUser.password,
       }),
     });
@@ -18,7 +17,7 @@ export const registr = async (newUser: User): Promise<User> => {
   };
 
   export const login = async (item: User): Promise<User> => {
-    const res = await fetch('http://localhost:4000/api/auth/sign-in', {
+    const res = await fetch('/sign-in', {
       method: 'post',
       headers: { 'Content-type': 'application/json' },
       credentials: 'include',
@@ -28,9 +27,23 @@ export const registr = async (newUser: User): Promise<User> => {
   };
 
   export const logout = async (): Promise<User> => {
-    const res = await fetch('http://localhost:4000/api/auth/logout', {
+    const res = await fetch('/logout', {
       credentials: 'include',
     });
     return res.json();
   };
+
+  export const getUsers = async (): Promise<User[]> => {
+    const res = await fetch('http://localhost:4000/api/main');
+    return res.json();
+  };
+  export const checkUser = async (): Promise<Res> => {
+    const res = await fetch('/sign-in', {
+      credentials: 'include',
+    });
+    const data = await res.json();
+    return data;
+  };
+
+
   

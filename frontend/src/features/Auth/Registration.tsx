@@ -4,11 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import * as UserApi from './UserApi';
 import type { RootState } from '../../store';
-import './Form.scss';
+
 
 function Registration(): JSX.Element {
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
   const nav = useNavigate();
@@ -18,7 +17,7 @@ function Registration(): JSX.Element {
 
   const registr = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    UserApi.registr({ name, password, email }).then((data) =>
+    UserApi.registr({ name, password }).then((data) =>
       dispatch({
         type: 'REG_USER',
         payload: data,
@@ -44,14 +43,6 @@ function Registration(): JSX.Element {
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
-        />
-        <label htmlFor="email">Почта</label>
-        <input
-          id="email"
-          name="email"
-          type="text"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
         />
         <label htmlFor="password">Пароль</label>
         <input

@@ -6,7 +6,7 @@ import * as UserApi from "./UserApi";
 import type { RootState } from '../../store';
 
 function Authorization(): JSX.Element {
-  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const nav = useNavigate();
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ function Authorization(): JSX.Element {
 
   const login = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    UserApi.login({ password, email }).then((data) =>
+    UserApi.login({ password, name }).then((data) =>
       dispatch({
         type: 'LOG_USER',
         payload: data,
@@ -33,13 +33,13 @@ function Authorization(): JSX.Element {
         style={{ display: 'flex', flexDirection: 'column' }}
         onSubmit={login}
       >
-        <label htmlFor="type">Почта</label>
+        <label htmlFor="type">Имя</label>
         <input
           id="type"
-          name="email"
+          name="name"
           type="text"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
         <label htmlFor="img">Пароль</label>
         <input
