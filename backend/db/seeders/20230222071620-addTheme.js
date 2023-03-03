@@ -5,7 +5,13 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await Theme.bulkCreate([
       {
-        name: 'Мушапы',
+        name: 'Керим в душе',
+      },
+      {
+        name: 'Dolby Digital 7:1',
+      },
+      {
+        name: 'OST',
       },
     ]);
   },

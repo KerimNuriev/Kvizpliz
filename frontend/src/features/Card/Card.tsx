@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/media-has-caption */
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import type { RootState } from '../../store';
@@ -5,14 +6,25 @@ import type CardType from './type/CardType';
 
 function Card({ card }: { card: CardType }): JSX.Element {
   const [status, setStatus] = useState(false);
+  const [status1, setStatus1] = useState(false);
   const [input, setInput] = useState('');
-  const [answer, setAnswer] = useState('');
+  // const [answer, setAnswer] = useState('');
+  const [check, setCheck] = useState(false);
   const dispatch = useDispatch();
   // const cardList = useSelector((state: RootState) => state.cards.cardList);
+  const handlerChangeInput: React.ChangeEventHandler<HTMLInputElement> = (
+    event,
+  ) => {
+    setInput(event.target.value);
+  };
   const inputHandler: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
-    setAnswer(card.answer);
-    console.log(input);
+    // setAnswer(card.answer);
+    if (input.toLowerCase() === card.answer.toLowerCase()) {
+      setCheck(true);
+    } else {
+      setCheck(false);
+    }
   };
 
   return (
@@ -22,7 +34,10 @@ function Card({ card }: { card: CardType }): JSX.Element {
           <button
             type="button"
             className="card"
-            onClick={() => setStatus(true)}
+            onClick={() => {
+              setStatus(true);
+              setStatus1(true);
+            }}
           >
             {card.price}
           </button>
@@ -30,14 +45,16 @@ function Card({ card }: { card: CardType }): JSX.Element {
           <button
             type="button"
             className="card"
-            onClick={() => setStatus(true)}
+            onClick={() => {
+              setStatus(true);
+            }}
             disabled
           >
             {card.price}
           </button>
         )}
       </div>
-      {status && (
+      {status1 && (
         <form onSubmit={inputHandler}>
           <div className="modalWindow">
             <img
@@ -45,16 +62,21 @@ function Card({ card }: { card: CardType }): JSX.Element {
               style={{ width: '300px' }}
               src="https://e7.pngegg.com/pngimages/82/843/png-clipart-musical-note-musical-note-text-logo.png"
             />
-            <audio src={card.source} autoPlay><track src={card.source}/></audio>
+            <audio src={card.source} autoPlay />
             <input
               placeholder="Введите название песни"
               value={input}
-              onChange={(event) => setInput(event.target.value)}
+              onChange={handlerChangeInput}
             />
             <button type="submit">Проверка</button>
-            <div className="answer">
-              <p>{answer}</p>
-            </div>
+            {check && (
+              <div className="answer">
+                <h1>МЕГАХАРОШ</h1>
+                <button type="button" onClick={() => setStatus1(false)}>
+                  {card.answer}
+                </button>
+              </div>
+            )}
           </div>
         </form>
       )}
