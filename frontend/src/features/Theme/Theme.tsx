@@ -4,7 +4,7 @@ import type ThemeType from './type/ThemeType';
 export default function Theme({ theme }: { theme: ThemeType }): JSX.Element {
   return (
     <div className="themeCard">
-      <p className="themeName">`asd`</p>
+      <p className="themeName">{theme.name}</p>
     </div>
   );
 }

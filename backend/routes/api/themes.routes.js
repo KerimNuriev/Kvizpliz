@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Theme } = require('../db/models');
+const { Theme } = require('../../db/models');
 
 router.get('/', async (req, res) => {
   try {
