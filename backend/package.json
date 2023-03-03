@@ -2,10 +2,11 @@
   "name": "assessment-2e-bees-2023-spb",
   "version": "1.0.0",
   "description": "## Введение",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js --ext js,json,jsx --ignore ./sessions"
+    "dev": "nodemon app.js --ext js,json,jsx --ignore ./sessions",
+    "dbr": "npx sequelize db:drop && npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all"
   },
   "repository": {
     "type": "git",
